@@ -8,7 +8,7 @@ from query import smart_dataframe_qa
 from dynamic_metrics import generate_time_series_region, compute_retail_metrics
 
 # ==============================
-st.set_page_config(page_title="Retail Data to Insight Agent", layout="wide")
+st.set_page_config(page_title="Data to Insight Agent", layout="wide")
 
 # ==============================
 @st.cache_data
@@ -49,15 +49,15 @@ with left_col:
         st.caption("Or load sample data:")
         c1, c2 = st.columns(2)
         with c1:
-            sample1 = st.button("📂 Walmart", use_container_width=True)
+            sample1 = st.button("📂 Retail 1", use_container_width=True)
         with c2:
-            sample2 = st.button("📂 Retail's", use_container_width=True)
+            sample2 = st.button("📂 Retail 2", use_container_width=True)
 
 
     sample_dir = "data_sample"
     sample_paths = {
-        "walmart": os.path.join(sample_dir, "(sample1)Walmart.csv"),
-        "retail": os.path.join(sample_dir, "(sample2)retaildata.csv")
+        "walmart": os.path.join(sample_dir, "(sample1)retaildata1.csv"),
+        "retail": os.path.join(sample_dir, "(sample2)retaildata2.csv")
     }
 
     if "df" not in st.session_state:
@@ -160,7 +160,7 @@ with right_col:
             with col4:
                 if pd.notna(summary_all['YoY Growth %']):
                     st.metric("Year-over-Year Growth", f"{summary_all['YoY Growth %']:,.2%}")
-                    
+
             st.divider()
 
             # === Anomaly Weeks ===

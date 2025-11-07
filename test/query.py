@@ -5,7 +5,6 @@ import pandas as pd
 from dotenv import load_dotenv
 from ollama import Client
 
-# === Step 0: 初始化 ===
 load_dotenv()
 api_key = os.getenv("OLLAMA_API_KEY")
 

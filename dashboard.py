@@ -4,7 +4,6 @@ import os
 import matplotlib.pyplot as plt
 from data_preprocessing import standardize_columns 
 from overall_analysis import generate_insights 
-from query import smart_dataframe_qa 
 from dynamic_metrics import generate_time_series_region, compute_retail_metrics
 
 # ==============================
@@ -56,8 +55,8 @@ with left_col:
 
     sample_dir = "data_sample"
     sample_paths = {
-        "walmart": os.path.join(sample_dir, "(sample1)retaildata1.csv"),
-        "retail": os.path.join(sample_dir, "(sample2)retaildata2.csv")
+        "walmart": os.path.join(sample_dir, "(sample1)Walmart.csv"),
+        "retail": os.path.join(sample_dir, "(sample2)retaildata.csv")
     }
 
     if "df" not in st.session_state:

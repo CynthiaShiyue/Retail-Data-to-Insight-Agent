@@ -3,6 +3,7 @@ import pandas as pd
 from ollama import Client
 import os
 from dotenv import load_dotenv
+import re
 
 load_dotenv()
 api_key = os.getenv("OLLAMA_API_KEY")
@@ -86,7 +87,7 @@ Your task:
    - Based on insights, suggest next steps (e.g., restocking, marketing push).
 
 Output format (must be plain text): 
-**Insights:**
+**Insights:** 
 1. ...
 2. ...
 3. ...
@@ -101,21 +102,42 @@ Output format (must be plain text):
         response += part["message"]["content"]
         print(part["message"]["content"], end="", flush=True)
 
-    insights, recommendations = [], []
+    insight_marker = "**Insights:**"
+    recommend_marker = "**Recommendations:**"
 
-    if "**Insights:**" in response:
-        insights_part = response.split("**Insights:**")[1].split("**Recommendations:**")[0].strip() \
-            if "**Recommendations:**" in response else response.split("**Insights:**")[1].strip()
-        for line in insights_part.splitlines():
-            clean = line.strip()
-            if len(clean) > 2 and (clean[0].isdigit() or clean.startswith("-") or clean.startswith("*")):
-                insights.append(clean.lstrip("0123456789.-) ").strip())
+    insights = ""
+    recommendations = ""
 
-    if "**Recommendations:**" in response:
-        rec_part = response.split("**Recommendations:**")[1].strip()
-        for line in rec_part.splitlines():
-            clean = line.strip()
-            if len(clean) > 2 and (clean[0].isdigit() or clean.startswith("-") or clean.startswith("*")):
-                recommendations.append(clean.lstrip("0123456789.-) ").strip())
+
+    if insight_marker in response and recommend_marker in response:
+        pattern = re.escape(insight_marker) + r"(.*?)" + re.escape(recommend_marker)
+        match = re.search(pattern, response, flags=re.DOTALL)
+        if match:
+            insights = match.group(1).strip()
+        
+        recommendations = response.split(recommend_marker, 1)[1].strip()
+
+    elif recommend_marker in response: 
+        recommendations = response.split(recommend_marker, 1)[1].strip()
+
+    elif insight_marker in response:  
+        insights = response.split(insight_marker, 1)[1].strip()
+
+    # insights, recommendations = [], []
+
+    # if "**Insights:**" in response:
+    #     insights_part = response.split("**Insights:**")[1].split("**Recommendations:**")[0].strip() \
+    #         if "**Recommendations:**" in response else response.split("**Insights:**")[1].strip()
+    #     for line in insights_part.splitlines():
+    #         clean = line.strip()
+    #         if len(clean) > 2 and (clean[0].isdigit() or clean.startswith("-") or clean.startswith("*")):
+    #             insights.append(clean.lstrip("0123456789.-) ").strip())
+
+    # if "**Recommendations:**" in response:
+    #     rec_part = response.split("**Recommendations:**")[1].strip()
+    #     for line in rec_part.splitlines():
+    #         clean = line.strip()
+    #         if len(clean) > 2 and (clean[0].isdigit() or clean.startswith("-") or clean.startswith("*")):
+    #             recommendations.append(clean.lstrip("0123456789.-) ").strip())
 
     return insights, recommendations

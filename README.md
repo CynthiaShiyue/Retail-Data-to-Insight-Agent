@@ -70,7 +70,7 @@ The interactive dashboard consolidates sales insights into an accessible managem
 Managers can interactively refine **date ranges** and **regions** to focus on specific operational periods or market segments.
 
 ![Dashboard Overview](screenshot/dashboardsample1.png)
-![Regional Analysis](screenshot/dashboardsample1.2.png)
+![Regional Analysis](screenshot/dashboardsample1_2.png)
 ---
 
 ## 🧩 Architecture Diagram  

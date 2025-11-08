@@ -5,7 +5,7 @@ It integrates automated data preparation, dynamic KPI tracking, and LLM-powered 
 
 
 
-🎥 [Watch Dashboard Demo](https://youtu.be/nzP00j29Lig) or (./Demo.mp4)
+🎥 [Watch Dashboard Demo](https://youtu.be/nzP00j29Lig) or (./Demo.mp4)  
 💻 [Project PPT (Download)](./Data-to-Insight_Agent.pptx)
 
 

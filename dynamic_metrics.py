@@ -139,15 +139,21 @@ def compute_retail_metrics(filtered_df: pd.DataFrame):
     else:
         yoy_growth = np.nan
 
-    # === simple anomaly detection：Z-score > 2 ===
+    # === simple anomaly detection：|Z-score| > 2 ===
     agg_sales = df.groupby("Week", as_index=False)["Sales"].sum().sort_values("Week")
     mean_sales = agg_sales["Sales"].mean()
     std_sales = agg_sales["Sales"].std(ddof=0)
+
     if std_sales > 0:
         agg_sales["z_score"] = (agg_sales["Sales"] - mean_sales) / std_sales
     else:
         agg_sales["z_score"] = 0
-    anomaly_weeks = agg_sales.loc[agg_sales["z_score"] > 2, "Week"].dt.strftime("%Y-%m-%d").tolist()
+
+    anomaly_weeks = (
+        agg_sales.loc[agg_sales["z_score"].abs() > 2, "Week"]
+        .dt.strftime("%Y-%m-%d")
+        .tolist()
+    )
     anomaly_weeks = sorted(list(set(anomaly_weeks)))
 
     

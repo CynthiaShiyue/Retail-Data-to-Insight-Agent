@@ -76,7 +76,7 @@ with left_col:
             sample2 = st.button("📂 Retail 2", use_container_width=True)
 
 
-    sample_dir = "data_sample"
+    sample_dir = "sample_input"
     sample_paths = {
         "walmart": os.path.join(sample_dir, "(sample1)Walmart.csv"),
         "retail": os.path.join(sample_dir, "(sample2)retaildata.csv")
@@ -187,7 +187,7 @@ with right_col:
 
             # === Anomaly Weeks ===
             if summary_all.get("Anomaly Weeks"):
-                st.subheader("⚠️ Anomaly Weeks (Z-score > 2)")
+                st.subheader("⚠️ Anomaly Weeks (|Z-score| > 2)")
                 st.markdown(
                     ", ".join(summary_all["Anomaly Weeks"])
                     if len(summary_all["Anomaly Weeks"]) > 0

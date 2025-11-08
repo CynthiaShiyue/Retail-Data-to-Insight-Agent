@@ -3,8 +3,13 @@
 A **Streamlit-based AI data analysis tool** for retail managers that automatically transforms weekly sales data into **business insights**, **performance metrics**, and **actionable recommendations**.  
 It integrates automated data preparation, dynamic KPI tracking, and LLM-powered narrative generation via the Ollama API.  
 
----
 
+
+🎥 [Watch Dashboard Demo](https://youtu.be/nzP00j29Lig) or (./Demo.mp4)
+💻 [Project PPT (Download)](./Data-to-Insight_Agent.pptx)
+
+
+---
 ## 🧠 Problem & Objective  
 
 Retail teams often spend hours manually reviewing weekly sales to detect performance trends or irregularities.  

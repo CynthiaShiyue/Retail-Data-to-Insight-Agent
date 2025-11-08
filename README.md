@@ -80,6 +80,11 @@ Managers can interactively refine **date ranges** and **regions** to focus on sp
 ### Sample Output
 ![Dashboard Overview](sample_output/dashboardsample1.png)
 ![Regional Analysis](sample_output/dashboardsample1_2.png)
+
+### Sample Input
+- Dataset 1: https://www.kaggle.com/datasets/rutuspatel/walmart-dataset-retail  
+- Dataset 2: https://www.kaggle.com/datasets/manjeetsingh/retaildataset
+
 ---
 
 ## 🧩 Architecture Diagram  

@@ -1,4 +1,4 @@
-# Retail Data to Insight Agent  
+# Data to Insight Agent  
 
 A **Streamlit-based AI data analysis tool** for retail managers that automatically transforms weekly sales data into **business insights**, **performance metrics**, and **actionable recommendations**.  
 It integrates automated data preparation, dynamic KPI tracking, and LLM-powered narrative generation via the Ollama API.  
@@ -19,6 +19,14 @@ This project delivers an **AI Data Analyst prototype** that automates this proce
 **Example Insight:**  
 > Region 4’s revenue increased 13 % in Q3, outperforming Region 20 by USD 4 million.
 
+---
+## 💭 Assumptions  
+
+- The uploaded dataset represents **weekly aggregated retail sales** — not customer-level transactions.  
+- Each dataset must contain **Region**, **Week (date)**, and **Sales** as core fields for analysis.  
+- Optional supporting variables may include **Holiday**, **temperature**, **fuel_price**, **CPI**, **unemployment**, and **promotion_flag**.  
+- The target user is a **mid-size retail organization**, where sales performance is tracked at the **regional or store level** rather than by individual customers.  
+- Time periods are assumed to be **continuous and comparable week-over-week**, enabling temporal trend detection and KPI computation.  
 ---
 ## 💡 Key Features
 
@@ -69,6 +77,7 @@ The interactive dashboard consolidates sales insights into an accessible managem
 
 Managers can interactively refine **date ranges** and **regions** to focus on specific operational periods or market segments.
 
+### Sample Output
 ![Dashboard Overview](screenshot/dashboardsample1.png)
 ![Regional Analysis](screenshot/dashboardsample1_2.png)
 ---
@@ -82,10 +91,10 @@ Upload CSV / Excel
 Data Standardization (LLM)
         │
         ▼
-KPI & Anomaly Computation
+Insight Generation (LLM)
         │
         ▼
-Insight Generation (LLM)
+KPI & Anomaly Computation
         │
         ▼
 Interactive Dashboard (Streamlit)
@@ -150,7 +159,8 @@ Retail-Data-to-Insight-Agent/
 ├── data_preprocessing.py  # LLM-based column standardization
 ├── dynamic_metrics.py     # KPI & anomaly computation
 ├── overall_analysis.py    # Insight and recommendation generation
-├── data_sample/           # Example datasets
+├── sample_input/           # Example datasets
+├── sample_output/          # Screenshots of dashboard
 ├── requirements.txt
 ├── Makefile
 └── .env.example

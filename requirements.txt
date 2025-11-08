@@ -15,6 +15,7 @@ cycler==0.12.1
 debugpy==1.8.17
 decorator==5.2.1
 distro==1.9.0
+et_xmlfile==2.0.0
 executing==2.2.1
 fonttools==4.60.1
 gitdb==4.0.12
@@ -44,6 +45,7 @@ nest-asyncio==1.6.0
 numpy==2.3.4
 ollama==0.6.0
 openai==2.7.1
+openpyxl==3.1.5
 packaging==25.0
 pandas==2.3.3
 parso==0.8.5

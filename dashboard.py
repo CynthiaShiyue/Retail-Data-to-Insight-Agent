@@ -12,7 +12,30 @@ st.set_page_config(page_title="Data to Insight Agent", layout="wide")
 # ==============================
 @st.cache_data
 def load_csv(path_or_file):
-    return pd.read_csv(path_or_file)
+    """
+    Load data from a CSV or Excel file and return a pandas DataFrame.
+    If Excel file is uploaded, convert it to CSV-equivalent DataFrame.
+    """
+    file_name = (
+        path_or_file.name
+        if hasattr(path_or_file, "name")
+        else str(path_or_file)
+    )
+
+    # Check file extension
+    ext = os.path.splitext(file_name)[-1].lower()
+
+    if ext in [".xls", ".xlsx"]:
+        st.info("Excel file detected.")
+        df = pd.read_excel(path_or_file)
+    elif ext == ".csv":
+        df = pd.read_csv(path_or_file)
+    else:
+        st.error("Unsupported file type. Please upload a .csv or .xlsx file.")
+        return None
+
+    return df
+
 
 @st.cache_data
 def preprocess_data(df):
@@ -43,7 +66,7 @@ with left_col:
 
     col1, col2 = st.columns([2.2, 1])
     with col1:
-        uploaded_file = st.file_uploader("Upload your CSV file", type=["csv"])
+        uploaded_file = st.file_uploader("Upload your data file", type=["csv", "xlsx", "xls"])
     with col2:
         st.caption("Or load sample data:")
         c1, c2 = st.columns(2)
@@ -83,11 +106,11 @@ with left_col:
             except Exception as e:
                 standardized_df = df  
 
-        st.subheader("🔍 Standardized Data Preview")
+        st.subheader("📊 Standardized Data Preview")
         st.dataframe(standardized_df.head(3), use_container_width=True, hide_index=True)
 
 
-        st.subheader("📊 Data Overall Analysis")
+        st.subheader("🔍 Data Overall Analysis")
         with st.spinner("Analyzing sales data ......"):
             try:
                 insights, recommendations = analyze_data(standardized_df)
